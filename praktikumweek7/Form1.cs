@@ -10,8 +10,10 @@ namespace praktikumweek7
         private void BtnKon_Click(object sender, EventArgs e)
         {
             
-            string hasil = tBoxPertama.Text;
+            string hasil = tBoxPertama.Text.ToUpper();
             char[] charArr = hasil.ToCharArray();
+            string huruf = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+            char[] huruf2 = huruf.ToUpper().ToCharArray();
             if (tBoxKedua.Text.Length==0 && tBoxKetiga.Text.Length==0 && tBoxPertama.Text.Length==0)
             {
                 MessageBox.Show("belum ada yang akan di konversi! silahkan input lagi");
@@ -36,10 +38,28 @@ namespace praktikumweek7
 
             int perbandingann = character2 - character;
             lOutput.Text = " ";
-                foreach (char ch in charArr)
-                { 
-                    lOutput.Text += Convert.ToChar(ch + perbandingann);
+          
+            
+            if (perbandingann < 0)
+              {
+                perbandingann += 26;
                 }
+            for (int i = 0; i < charArr.Length; i++)
+            {
+                if (charArr[i] == ' ')
+                {
+                    lOutput.Text += charArr[i];
+                }
+                for (int j=0; j<26;j++)
+                {
+                    if (charArr[i]==huruf2[j])
+                    {
+                        lOutput.Text += huruf2[j + perbandingann];
+                    }
+                }
+
+            }
+
         }
 
        
